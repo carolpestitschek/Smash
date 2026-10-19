@@ -1,4 +1,4 @@
-// Keep completed products first; preserve cards and their existing interactions.
+// Group products by category and order by their lifecycle status.
 document.querySelectorAll('[data-name="Equipment repository"]').forEach((repository,repoIndex)=>{
  const grid=repository.querySelector('[data-name="Gear categories"]');
  const entries=[];
@@ -31,14 +31,17 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
   field.append(select);toolbar.append(field);return select;
  };
  const category=makeSelect('Category',[['all','All categories'],...Array.from(new Set(entries.map(e=>e.name))).sort().map(n=>[n,n])]);
- const status=makeSelect('Show',[['all','All items'],['current','Currently using'],['owned','Owned · not in use'],['archived','Archived'],['collection','Collection']]);
- const sort=makeSelect('Sort by',[['default','Filled first · A–Z'],['alpha','Alphabetical · A–Z'],['oldest','Oldest added'],['newest','Newest added']]);
+ const status=makeSelect('Item status',[['all','All statuses'],['current','Currently using'],['collection','Collection'],['owned','Owned · not in use'],['archived','Archived']]);
+ const sort=makeSelect('Sort by',[['default','Item status'],['alpha','Alphabetical · A–Z'],['oldest','Oldest added'],['newest','Newest added']]);
  const count=document.createElement('span');count.className='gear-result-count';count.setAttribute('aria-live','polite');toolbar.append(count);
  grid.before(toolbar);
  const empty=document.createElement('p');empty.className='gear-empty';empty.textContent='No items in this selection yet.';empty.hidden=true;grid.after(empty);
  const render=()=>{
   const ordered=[...entries].sort((a,b)=>{
-   if(a.filled!==b.filled)return Number(b.filled)-Number(a.filled);
+   if(sort.value==='default'){
+    const rank={current:0,collection:1,owned:2,archived:3,placeholder:4};
+    const difference=rank[a.status]-rank[b.status];if(difference)return difference;
+   }
    if(sort.value==='oldest'||sort.value==='newest')return (sort.value==='oldest'?1:-1)*(a.added-b.added)||a.title.localeCompare(b.title);
    return a.title.localeCompare(b.title)||a.name.localeCompare(b.name);
   });

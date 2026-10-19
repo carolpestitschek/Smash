@@ -6,7 +6,8 @@ const footwearProducts=[
     "subtitle": "White / silver · 1042A318-101",
     "description": "A streamlined padel shoe with TRUSSTIC stability technology and cushioning for comfortable court movement.",
     "image": "asics-gel-dedicate-9-views.png",
-    "url": "https://www.asics.com/gb/en-gb/gel-dedicate-9-padel/p/1042A318-101.html"
+    "url": "https://www.asics.com/gb/en-gb/gel-dedicate-9-padel/p/1042A318-101.html",
+    "initial": 6
   },
   {
     "name": "Adidas · Crazyquick Boost",
@@ -43,6 +44,6 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach(reposito
   const desc=card.querySelector('[data-name="Paragraph"]>div');desc.replaceChildren();[product.subtitle,product.description].forEach((text,index)=>{const p=document.createElement('p');p.textContent=text;p.style.lineHeight='24px';if(!index)p.style.marginBottom='16px';desc.append(p);});
   const anchor=card.querySelector('[data-name="Anchor"]');anchor.replaceChildren();if(product.url){const a=document.createElement('a');a.href=product.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='View product ↗';a.className='gear-product-link';anchor.append(a);}
   const artwork=card.querySelector('[data-name="Illustrative product placeholder"]');artwork.replaceChildren();artwork.classList.add('bag-artwork');const viewport=document.createElement('div');viewport.className='bag-view';viewport.setAttribute('role','img');viewport.setAttribute('aria-label',product.name+', rotating on hover');artwork.append(viewport);
-  renderProductSprite(viewport,'assets/'+product.image,[[0,0,400,450],[400,0,480,450],[880,0,470,450],[1350,0,424,450],[0,450,400,437],[400,450,480,437],[880,450,470,437],[1350,450,424,437]],{initial:2});
+  renderProductSprite(viewport,'assets/'+product.image,[[0,0,400,450],[400,0,480,450],[880,0,470,450],[1350,0,424,450],[0,450,400,437],[400,450,480,437],[880,450,470,437],[1350,450,424,437]],{initial:product.initial??2});
  });
 });

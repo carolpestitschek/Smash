@@ -264,3 +264,36 @@
 @media(hover:hover) and (pointer:fine){.diagonal-arrow-trigger:hover .diagonal-action-arrow,.past-tournament-card:hover .plain-tournament-arrow{transform:translate(3px,-3px);}}
 .diagonal-arrow-trigger:focus-visible .diagonal-action-arrow,.diagonal-arrow-trigger:focus-within .diagonal-action-arrow,.past-tournament-card:focus-within .plain-tournament-arrow{transform:translate(3px,-3px);}
 @media(prefers-reduced-motion:reduce){.diagonal-action-arrow,.plain-tournament-arrow{transition:none;transform:none!important;}}
+
+/* The new hero artwork includes its own ball seams. */
+[data-name="Hero"] [data-name="Ball seams"]{display:none}
+
+/* Let the hero mascot fill its original artwork area. */
+[data-name="Hero"] [data-name="Padel ball"] img{transform:scale(1.28);transform-origin:center}
+
+/* Align the mascot's lower outline with the Smash letter baseline. */
+.desktop-view [data-name="Hero"] [data-name="Padel ball"]{top:66px}
+
+/* Full-bleed light bands retain the shared content column. */
+[data-name="Player profile"], [data-name="Upcoming tournaments"], [data-name="Past tournaments"]{
+ box-shadow:0 0 0 100vmax #dadada;
+ clip-path:inset(0 -100vmax);
+}
+
+/* Michroma descenders need space below the schedule heading. */
+[data-name="Schedule heading"]{overflow:visible}
+[data-name="Schedule heading"] [data-name="Display title"]{padding-bottom:6px;overflow:visible}
+[data-name="Schedule heading"] [data-name="Display title"] p{line-height:1.3}
+
+/* Center hero action labels and arrow glyphs on a shared line box. */
+[data-name="Hero"] [data-name="Profile actions"] [data-name="Action"]{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:14px 20px;gap:16px}
+[data-name="Hero"] [data-name="Profile actions"] [data-name="Action"]>p{margin:0;line-height:20px}
+[data-name="Hero"] [data-name="Profile actions"] .diagonal-action-arrow{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;line-height:1}
+
+/* Keep section-title descenders clear of exported clipping wrappers. */
+[data-name="Section heading"], [data-name="Title block"], [data-name="Archive heading"], [data-name="Directory heading"], [data-name="Display title"]{overflow:visible}
+[data-name="Display title"]{padding-bottom:.12em}
+[data-name="Display title"]>p{line-height:1.3}
+
+[data-name="Hero"] [data-name="Display title"]{padding-bottom:0}
+[data-name="Hero"] [data-name="Display title"]>p{line-height:1.15}

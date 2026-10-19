@@ -6,10 +6,10 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach(reposito
  const artwork=card.querySelector('[data-name="Illustrative product placeholder"]');
  artwork.replaceChildren();artwork.classList.add('bag-artwork');
  const viewport=document.createElement('div');viewport.className='bag-view';
- const image=document.createElement('img');image.src='assets/deite-peach-views.png';image.alt='Déité Peach padel shoe in cream, peach and yellow';image.className='bag-render';
+ const image=document.createElement('img');image.src='assets/deite-peach-right-facing-views.png';image.alt='Déité Peach padel shoe in cream, peach and yellow';image.className='bag-render';
  viewport.appendChild(image);artwork.appendChild(viewport);
  viewport.setAttribute('role','img');viewport.setAttribute('aria-label',image.alt);image.remove();
- renderProductSprite(viewport,'assets/deite-peach-views.png',[[0,0,310,460],[310,0,490,460],[800,0,560,460],[1360,0,414,460],[0,475,310,412],[310,475,480,412],[790,475,480,412],[1270,475,504,412]],{initial:2});
+ renderProductSprite(viewport,'assets/deite-peach-right-facing-views.png',[[0,0,310,460],[310,0,490,460],[800,0,560,460],[1360,0,414,460],[0,475,310,412],[310,475,480,412],[790,475,560,412],[1350,475,424,412]],{initial:2});
 
  card.querySelector('[data-name="Status"] p').textContent='CURRENT GEAR';
  card.querySelector('[data-name="Heading"] p').textContent='Déité · Peach';

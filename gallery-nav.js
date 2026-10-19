@@ -1,1 +1,3 @@
-document.querySelectorAll('[data-name="Page links"]').forEach(nav=>{const link=document.createElement('a');link.href='gallery.html';link.textContent='Gallery';link.className=nav.querySelector('a')?.className||'';link.style.color='#dadada';const action=nav.querySelector('[data-name="Action"]');nav.insertBefore(link,action);});
+document.querySelectorAll('[data-name="Page links"]').forEach(nav=>{
+ [['gallery.html','Gallery'],['wish-list.html','Wish List']].forEach(([href,title])=>{const link=document.createElement('a');link.href=href;link.textContent=title;link.className=nav.querySelector('a')?.className||'';link.style.color='#dadada';nav.insertBefore(link,nav.querySelector('[data-name="Action"]'));});
+});
