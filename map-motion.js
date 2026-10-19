@@ -16,6 +16,7 @@ const mapClubs = [
   {name:'S3 Padel Brent Cross (Closed)',area:'Brent Cross, London',address:'Prince Charles Drive · NW4 3AY',courts:'Closed · Former venue',url:'https://socialsportssociety.com/venue/brent-cross/'},
   {name:'S3 Padel Wembley (Closed)',area:'Wembley Park, London',address:'Wembley Park Boulevard · HA9 0TG',courts:'Closed · Former venue',url:'https://socialsportssociety.com/'}
 ];
+const latestClubVisits={"Rocket Padel Ilford": "8 Sep 2026", "PADELHUB Slough": "25 Aug 2025", "National Tennis Centre Padel": "28 Apr 2026", "Padel Box Bermondsey": "30 Aug 2025", "Rocks Lane Chiswick Padel": "24 Jul 2025"};
 const pinReducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 document.querySelectorAll('[data-name="Map and selected club"]').forEach(section=>{
   const map=section.querySelector('[data-name="Illustrative London map"]');
@@ -45,6 +46,7 @@ document.querySelectorAll('[data-name="Map and selected club"]').forEach(section
     location.children[0].textContent=club.area;location.children[1].textContent=club.address;
     detail.querySelector('[data-name="Club details"] > p').textContent=club.courts;
     detail.querySelector('a').href=club.url;
+    detail.querySelectorAll('[data-name="Club details"] p').forEach(p=>{if(/^(?:Latest visit|Visit):/.test(p.textContent.trim()))p.textContent=latestClubVisits[club.name]?'Latest visit: '+latestClubVisits[club.name]:'Visit: [Date to add]';});
     if(animate&&!pinReducedMotion.matches){
       selectionAnimation?.cancel();
       selectionAnimation=detail.animate([{opacity:0.65,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:220,easing:'cubic-bezier(0.23, 1, 0.32, 1)'});
@@ -65,6 +67,6 @@ document.querySelectorAll('[data-name="Map and selected club"]').forEach(section
     });
   });
   const footnote=map.querySelector(':scope > p:last-child');
-  footnote.hidden=true;
+  if(footnote)footnote.hidden=true;
   select(0,false);
 });

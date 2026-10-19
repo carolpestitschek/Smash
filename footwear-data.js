@@ -23,6 +23,15 @@ const footwearProducts=[
     "subtitle": "White / grey · Padel 2024",
     "description": "Dual BOA fit adjustment, DynaFoam cushioning and a MONDO-developed Motion Tread sole, with lateral support for padel.",
     "image": "head-motion-pro-boa-views.png"
+  },
+  {
+    "name": "Adidas · Gamecourt 3",
+    "status": "owned",
+    "added": 12,
+    "subtitle": "Pink · Clay tennis · KZ6355",
+    "description": "A breathable mesh upper, supportive overlays and a clay-court tread, in a tonal pink colourway.",
+    "image": "adidas-gamecourt-3-views.png",
+    "url": "https://www.adidas.co.uk/gamecourt-3-clay-tennis-shoes/KZ6355.html"
   }
 ];
 document.querySelectorAll('[data-name="Equipment repository"]').forEach(repository=>{

@@ -53,3 +53,7 @@ document.querySelectorAll('main').forEach(view=>{
 document.querySelectorAll('.past-tournament-card [data-name="Tournament banner"]>p').forEach(icon=>{
  icon.textContent='↗';icon.classList.add('plain-tournament-arrow');icon.setAttribute('aria-hidden','true');
 });
+
+// Club visit dates supplied by Carol.
+const addedClubVisits={"Rocket Padel Ilford": "8 Sep 2026", "PADELHUB Slough": "25 Aug 2025", "National Tennis Centre Padel": "28 Apr 2026", "Padel Box Bermondsey": "30 Aug 2025", "Rocks Lane Chiswick Padel": "24 Jul 2025"};
+document.querySelectorAll('[data-name="Club card"]').forEach(card=>{for(const [name,date] of Object.entries(addedClubVisits))if(card.textContent.includes(name))replaceText(card,'Visit: [Date to add]','Latest visit: '+date);});

@@ -1,6 +1,6 @@
 // Isolate each connected product silhouette before displaying an atlas frame.
 // Atlas cells may be uneven; no neighbouring fragments are ever displayed.
-window.renderProductSprite=async function(viewport,src,regions,{initial=0,inspect=false}={}){
+window.renderProductSprite=async function(viewport,src,regions,{initial=0,inspect=false,anchor='base'}={}){
  const image=new Image();image.src=src;await image.decode();
  const source=document.createElement('canvas');source.width=image.naturalWidth;source.height=image.naturalHeight;
  const ctx=source.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);
@@ -35,7 +35,13 @@ window.renderProductSprite=async function(viewport,src,regions,{initial=0,inspec
  viewport.replaceChildren();
  const layers=frames.map((frame,index)=>{const canvas=document.createElement('canvas');canvas.width=520;canvas.height=440;canvas.className='isolated-product-frame';canvas.dataset.frame=index;
   canvas.style.cssText=inspect?'width:260px;height:220px;':`position:absolute;inset:0;width:260px;height:220px;opacity:${index===initial?1:0}`;
-  const context=canvas.getContext('2d');context.scale(2,2);context.drawImage(frame,130-frame.width*scale/2,208-frame.height*scale,frame.width*scale,frame.height*scale);viewport.append(canvas);return canvas;});
+  const context=canvas.getContext('2d');context.scale(2,2);let pivotX=frame.width/2;
+  if(anchor==='white-grip'){
+   const data=frame.getContext('2d').getImageData(0,0,frame.width,frame.height).data;let left=frame.width,right=0;
+   for(let y=Math.floor(frame.height*.94);y<frame.height;y++)for(let x=0;x<frame.width;x++){const i=(y*frame.width+x)*4;if(data[i+3]>192&&data[i]>150&&data[i+1]>150&&data[i+2]>150){left=Math.min(left,x);right=Math.max(right,x);}}
+   if(left<=right)pivotX=(left+right+1)/2;
+  }
+  context.drawImage(frame,130-pivotX*scale,208-frame.height*scale,frame.width*scale,frame.height*scale);viewport.append(canvas);return canvas;});
  if(inspect)return;
  const reduce=matchMedia('(prefers-reduced-motion: reduce)'),fine=matchMedia('(hover: hover) and (pointer: fine)');let animations=[];
  const stop=()=>{animations.forEach(a=>a.cancel());animations=[];};
