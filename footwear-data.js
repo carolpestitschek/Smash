@@ -14,8 +14,7 @@ const footwearProducts=[
     "added": 9,
     "subtitle": "White / silver / pink · JP9588",
     "description": "BOOST cushioning, a supportive Slingframe and an Adituff reinforced toe. Adiwear rubber provides durable court grip.",
-    "image": "adidas-crazyquick-boost-views.png",
-    "url": "https://www.padelonline.uk/adidas-ladies-crazyquick-boost-padel-shoes"
+    "image": "adidas-crazyquick-boost-views.png"
   },
   {
     "name": "HEAD · Motion Pro BOA",

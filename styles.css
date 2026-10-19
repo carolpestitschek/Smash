@@ -531,3 +531,14 @@
 @media(hover:hover) and (pointer:fine){[data-name="Hero"] [data-name="Action"]:hover>p:last-child{transform:translate(3px,-3px);}}
 [data-name="Hero"] [data-name="Action"]:focus-visible>p:last-child{transform:translate(3px,-3px);}
 @media(prefers-reduced-motion:reduce){[data-name="Hero"] [data-name="Action"]>p:last-child{transition:none;transform:none!important;}}
+/* Launch copy and consistent, uncramped pill labels. */
+[data-name="Hero"] [data-name="Placeholder guidance"]{display:none!important;}
+[data-name="Status"]:not(.latest-match-status [data-name="Status"]){padding:5px 10px;min-height:26px;height:auto;max-width:100%;border-radius:100px;flex-shrink:0;overflow:visible;}
+[data-name="Status"] p{line-height:16px;}
+.latest-match-status>p{padding:5px 10px;}
+.gear-category-group:first-child .gear-group-heading{border-top:0;padding-top:0;}
+/* Shared original arrow: nav, hero, Strava, invitation and tournament. */
+.diagonal-action-arrow,.plain-tournament-arrow{display:inline-block;transition:transform 250ms cubic-bezier(.23,1,.32,1);}
+@media(hover:hover) and (pointer:fine){.diagonal-arrow-trigger:hover .diagonal-action-arrow,.past-tournament-card:hover .plain-tournament-arrow{transform:translate(3px,-3px);}}
+.diagonal-arrow-trigger:focus-visible .diagonal-action-arrow,.diagonal-arrow-trigger:focus-within .diagonal-action-arrow,.past-tournament-card:focus-within .plain-tournament-arrow{transform:translate(3px,-3px);}
+@media(prefers-reduced-motion:reduce){.diagonal-action-arrow,.plain-tournament-arrow{transition:none;transform:none!important;}}

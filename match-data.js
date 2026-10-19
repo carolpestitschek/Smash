@@ -49,9 +49,7 @@ document.querySelectorAll('main').forEach(view=>{
  });
 });
 
-// External-link motif: a stationary corner and a diagonal arrow that lifts on hover.
+// Keep the past tournament's original single diagonal-arrow glyph.
 document.querySelectorAll('.past-tournament-card [data-name="Tournament banner"]>p').forEach(icon=>{
- if(icon.textContent.trim()!=='↗')return;
- icon.classList.add('tournament-external-motion');icon.setAttribute('aria-hidden','true');
- icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5H5v14h14v-5"/><g class="tournament-external-arrow"><path d="m10 14 7-7M11 7h6v6"/></g></svg>';
+ icon.textContent='↗';icon.classList.add('plain-tournament-arrow');icon.setAttribute('aria-hidden','true');
 });
