@@ -1,0 +1,1 @@
+document.querySelectorAll('[data-name="Page links"]').forEach(nav=>{const link=document.createElement('a');link.href='gallery.html';link.textContent='Gallery';link.className=nav.querySelector('a')?.className||'';link.style.color='#dadada';const action=nav.querySelector('[data-name="Action"]');nav.insertBefore(link,action);});

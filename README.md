@@ -25,3 +25,7 @@ Open http://localhost:4173/.
 Gear states are `current`, `owned` and `archived`, supplied through each product card’s `data-gear-status`. Oldest/newest sorting uses notebook addition order, not purchase dates. Unfilled product cards remain placeholders.
 
 Motion respects reduced-motion preferences. Product rotations use isolated views from supplied spritesheets.
+
+## Gallery
+
+Open `gallery.html`. Add images to `assets/gallery/` and entries to `gallery-data.js`. Each entry supports `src`, descriptive `alt`, `caption`, optional `photographer` (an @handle) and optional `photographerUrl` (a full profile URL). Credits are hidden when omitted. Clicking a photo opens an accessible dialog; Escape closes it. The gallery currently awaits Carol’s selected photos.
