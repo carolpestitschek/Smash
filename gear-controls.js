@@ -12,7 +12,7 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
    const lifecycle=filled?(card.dataset.gearStatus||'current'):'placeholder';
    card.dataset.gearStatus=lifecycle;
    const badge=card.querySelector('[data-name="Status"]');
-   const labels={current:'CURRENTLY USING',owned:'OWNED · NOT IN USE',archived:'ARCHIVED',placeholder:'TO BE ADDED'};
+   const labels={current:'CURRENTLY USING',owned:'OWNED · NOT IN USE',archived:'ARCHIVED',collection:'COLLECTION',placeholder:'TO BE ADDED'};
    badge.querySelector('p').textContent=labels[lifecycle];
    badge.classList.add('gear-status-'+lifecycle);
    const entry=document.createElement('div');entry.className='gear-entry';
@@ -29,7 +29,7 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
   field.append(select);toolbar.append(field);return select;
  };
  const category=makeSelect('Category',[['all','All categories'],...Array.from(new Set(entries.map(e=>e.name))).sort().map(n=>[n,n])]);
- const status=makeSelect('Show',[['all','All items'],['filled','Filled items'],['current','Currently using'],['owned','Owned · not in use'],['archived','Archived']]);
+ const status=makeSelect('Show',[['all','All items'],['filled','Filled items'],['current','Currently using'],['owned','Owned · not in use'],['archived','Archived'],['collection','Collection']]);
  const sort=makeSelect('Sort by',[['default','Filled first · A–Z'],['alpha','Alphabetical · A–Z'],['oldest','Oldest added'],['newest','Newest added']]);
  const count=document.createElement('span');count.className='gear-result-count';count.setAttribute('aria-live','polite');toolbar.append(count);
  grid.before(toolbar);
