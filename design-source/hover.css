@@ -223,3 +223,6 @@
 
 /* Comfortable padding around the gear lifecycle labels. */
 [data-name="Equipment repository"] [data-name="Gear state"] [data-name="Status"]{padding:5px 10px;min-height:26px;height:auto;border-radius:100px;}
+
+.gear-status-current{background:#c0fb30!important;border:0!important;}
+.gear-status-current p{color:#080908!important;}

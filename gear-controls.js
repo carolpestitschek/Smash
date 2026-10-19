@@ -17,7 +17,7 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
    badge.classList.add('gear-status-'+lifecycle);
    const entry=document.createElement('div');entry.className='gear-entry';
    entry.append(heading.cloneNode(true),card);
-   entries.push({entry,name,title,filled,status:lifecycle,added:card.classList.contains('deite-shoe-card')?2:card.classList.contains('oysho-bag-card')?1:0});
+   entries.push({entry,name,title,filled,status:lifecycle,added:Number(card.dataset.addedOrder)||(card.classList.contains('deite-shoe-card')?2:card.classList.contains('oysho-bag-card')?1:0)});
   });
  });
  grid.replaceChildren();grid.classList.add('gear-sorted-grid');
