@@ -16,11 +16,13 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
    badge.querySelector('p').textContent=labels[lifecycle];
    badge.classList.add('gear-status-'+lifecycle);
    const entry=document.createElement('div');entry.className='gear-entry';
-   entry.append(heading.cloneNode(true),card);
+   entry.append(card);
    entries.push({entry,name,title,filled,status:lifecycle,added:Number(card.dataset.addedOrder)||(card.classList.contains('deite-shoe-card')?2:card.classList.contains('oysho-bag-card')?1:0)});
   });
  });
  grid.replaceChildren();grid.classList.add('gear-sorted-grid');
+ const groups=new Map();
+ ['Rackets','Shoes','Accessories'].filter(name=>entries.some(e=>e.name===name)).forEach(name=>{const section=document.createElement('section');section.className='gear-category-group';const heading=document.createElement('div');heading.className='gear-group-heading';const title=document.createElement('h3');title.textContent=name;const star=document.createElement('span');star.textContent='✦';star.setAttribute('aria-hidden','true');heading.append(title,star);const cards=document.createElement('div');cards.className='gear-group-cards';section.append(heading,cards);grid.append(section);groups.set(name,{section,cards});});
  const toolbar=document.createElement('div');toolbar.className='gear-controls';
  const makeSelect=(label,options)=>{
   const field=document.createElement('label');field.append(document.createTextNode(label));
@@ -43,8 +45,9 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
   let shown=0;
   ordered.forEach(item=>{
    const visible=(category.value==='all'||item.name===category.value)&&(status.value==='all'||item.status===status.value);
-   item.entry.hidden=!visible;if(visible)shown++;grid.append(item.entry);
+   item.entry.hidden=!visible;if(visible)shown++;groups.get(item.name).cards.append(item.entry);
   });
+  groups.forEach(({section,cards})=>{section.hidden=![...cards.children].some(entry=>!entry.hidden);});
   count.textContent=`${shown} ${shown===1?'item':'items'}`;empty.hidden=shown!==0;
  };
  [category,status,sort].forEach(select=>select.addEventListener('change',render));render();
