@@ -1,0 +1,212 @@
+
+/* Tournament star: subtle, interruptible hover feedback. */
+[data-name="Tournament banner"] > p { transform-origin: center; }
+@media (hover: hover) and (pointer: fine) {
+  [data-name="Tournament banner"] > p {
+    transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  [data-name="Tournament card"]:hover [data-node-id="0:4961"],
+  [data-name="Tournament card"]:hover [data-node-id="0:4638"] {
+    transform: translateY(-3px) rotate(90deg) scale(1.08);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-name="Tournament banner"] > p { transition: none; transform: none !important; }
+}
+
+/* Map pin feedback keeps the original pin positions and palette. */
+.club-pin { cursor:pointer; touch-action:manipulation; transform-origin:center;
+ transition:transform 180ms cubic-bezier(0.23,1,0.32,1),background-color 180ms ease; }
+[data-name="Illustrative location pin"][aria-pressed="true"] {background-color:#c0fb30;}
+[data-name="Illustrative location pin"][aria-pressed="false"] {background-color:#dadada;}
+.club-pin[aria-pressed="true"] {outline:2px solid #c0fb30;outline-offset:3px;}
+.club-pin:focus-visible {outline:2px solid #dadada;outline-offset:5px;}
+[data-name="UK inset"] > .club-pin {border-radius:4px;min-height:24px;display:flex;align-items:center;}
+@media(hover:hover) and (pointer:fine){
+ .club-pin:hover {transform:translateY(-3px) scale(1.12);}
+}
+.club-pin:active {transform:scale(0.96);}
+@media(prefers-reduced-motion:reduce){
+ .club-pin {transition:none;transform:none!important;}
+}
+.map-region-option {cursor:pointer;touch-action:manipulation;transition:background-color 180ms ease;}
+.map-region-option:focus-visible {outline:2px solid #c0fb30;outline-offset:3px;}
+@media(hover:hover) and (pointer:fine){.map-region-option:hover{filter:brightness(1.08);}}
+@media(prefers-reduced-motion:reduce){.map-region-option{transition:none;}}
+
+/* Finished content cards: equal directory cards, without editor slot guides. */
+[data-name="Club directory"] [data-name="Club entries"] {align-items:stretch;}
+[data-name="Club directory"] [data-name="Club card"] {align-self:stretch;}
+.desktop-view [data-name="Club directory"] [data-name="Club card"] {flex:1 1 0;min-width:0;}
+.mobile-view [data-name="Club directory"] [data-name="Club card"] {width:100%;min-height:340px;}
+[data-name="Club directory"] [data-name="Details card"] {flex:1 1 auto;}
+[data-name="Club directory"] [data-name="🔁 Slot"],
+[data-name="Equipment repository"] [data-name="🔁 Slot"] {border-color:transparent;}
+.mobile-view [data-name="Club entries"] {display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;width:100%;}
+
+/* Keep club links on a shared baseline inside the existing card padding. */
+[data-name="Club directory"] [data-name="Details card"] {display:flex;flex-direction:column;}
+[data-name="Club directory"] [data-name="🔁 Slot"] {display:flex;flex:1 1 auto;flex-direction:column;}
+[data-name="Club directory"] [data-name="🔁 Slot"] > div {display:flex;flex:1 1 auto;flex-direction:column;height:auto;}
+[data-name="Club directory"] [data-name="Anchor"] {margin-top:auto;}
+/* Seven clubs retain the original four-column card width. */
+.desktop-view [data-name="Club entries"] {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;align-items:stretch;}
+
+/* Directory PIN labels share a single neutral pill style. */
+[data-name="Club directory"] [data-name="Club region"] [data-name="Status"] {
+ display:inline-flex;align-items:center;justify-content:center;
+ height:20px;min-width:20px;padding:2px 6px;gap:4px;
+ border:1px solid #383c35;border-radius:100px;background:#141614;
+}
+[data-name="Club directory"] [data-name="Club region"] [data-name="Status"] p {
+ color:#dadada;font-family:"IBM Plex Mono",monospace;font-size:10px;
+ line-height:16px;white-space:nowrap;
+}
+[data-name="Club directory"] [data-name="Club region"] [data-name="Status"].selected-pin-badge {
+ background:#c0fb30;border-color:#c0fb30;
+}
+[data-name="Club directory"] [data-name="Club region"] [data-name="Status"].selected-pin-badge p {color:#080908;}
+[data-name="Club entries"] > [data-name="Club card"][hidden]{display:none!important;}
+.club-pagination{display:flex;width:100%;align-items:center;justify-content:space-between;gap:20px;}
+.club-page-status{font:11px/1.5 "IBM Plex Mono",monospace;color:#969c93;}
+.club-page-controls{display:flex;align-items:center;gap:8px;}
+.club-page-controls button{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:8px;border:1px solid #383c35;border-radius:100px;background:#141614;color:#dadada;font:13px/1 "Space Grotesk",sans-serif;cursor:pointer;transition:background-color 160ms ease,color 160ms ease;}
+.club-page-controls button[aria-current="page"]{background:#c0fb30;color:#080908;border-color:#c0fb30;}
+.club-page-controls button:disabled{opacity:.35;cursor:default;}
+.club-page-controls button:focus-visible{outline:2px solid #c0fb30;outline-offset:3px;}
+@media(hover:hover) and (pointer:fine){.club-page-controls button:not(:disabled):hover{background:#dadada;color:#080908;}}
+@media(max-width:767px){.club-pagination{flex-direction:column;align-items:flex-start;gap:16px;}.club-page-controls{width:100%;justify-content:space-between;}}
+@media(prefers-reduced-motion:reduce){.club-page-controls button{transition:none;}}
+
+/* More breathing room between each PIN header and its club content. */
+[data-name="Club directory"] [data-name="Club region"] {padding-bottom:24px;}
+
+/* A spacious footer with a playful, bounded sticker board. */
+[data-name="Footer"] {gap:48px;padding-top:72px;padding-bottom:48px;}
+.footer-sticker-board{position:relative;width:100%;height:320px;isolation:isolate;}
+.sticker-board-tools{display:flex;align-items:center;gap:24px;width:100%;padding-top:8px;color:#969c93;font:11px/1.5 "IBM Plex Mono",monospace;}
+.sticker-board-tools p{color:#dadada;}
+.sticker-board-tools span{margin-left:auto;}
+.sticker-board-tools button{background:transparent;color:#dadada;border:1px solid #383c35;border-radius:100px;padding:8px 14px;cursor:pointer;}
+.footer-sticker{position:absolute;left:0;top:0;display:block;padding:0;border:0;background:transparent;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;}
+.footer-sticker img{display:block;width:100%;height:auto;pointer-events:none;transform-origin:center;transition:transform 250ms cubic-bezier(0.23,1,0.32,1),filter 250ms ease;}
+.footer-sticker.is-dragging{cursor:grabbing;}
+.footer-sticker.is-dragging img{filter:drop-shadow(0 12px 10px #0009);}
+.footer-sticker:focus{outline:none;}
+.footer-sticker:focus-visible img{filter:drop-shadow(0 0 2px #c0fb30);}
+.sticker-board-tools button:focus-visible{outline:2px solid #c0fb30;outline-offset:3px;}
+@media(hover:hover) and (pointer:fine){.footer-sticker:hover img{filter:drop-shadow(0 5px 5px #0008);}}
+@media(max-width:767px){[data-name="Footer"]{gap:32px;padding-top:56px;}.footer-sticker-board{height:300px;}.sticker-board-tools{flex-wrap:wrap;gap:12px;}.sticker-board-tools span{margin-left:0;order:3;flex-basis:100%;}.sticker-board-tools button{margin-left:auto;}}
+@media(prefers-reduced-motion:reduce){.footer-sticker img{transition:none;}}
+
+/* Footer-only grid, fading softly into the surrounding dark canvas. */
+[data-name="Footer"] {position:relative;isolation:isolate;background:radial-gradient(ellipse at 50% 48%,#171b16 0%,#0d100c 46%,#080908 82%);}
+[data-name="Footer"]::before {
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background-image:linear-gradient(to right,rgba(150,156,147,.18) 1px,transparent 1px),linear-gradient(to bottom,rgba(150,156,147,.18) 1px,transparent 1px);
+ background-size:40px 40px;background-position:center center;
+ -webkit-mask-image:radial-gradient(ellipse at 50% 48%,#000 16%,rgba(0,0,0,.8) 42%,transparent 76%);
+ mask-image:radial-gradient(ellipse at 50% 48%,#000 16%,rgba(0,0,0,.8) 42%,transparent 76%);
+}
+@media(max-width:767px){[data-name="Footer"]::before{background-size:28px 28px;}}
+
+/* Invitation emblem: looping globe lines with independent star hover feedback. */
+[data-name="Orbital emblem"] > p {
+ transform-origin:center;transition:transform 250ms cubic-bezier(0.23,1,0.32,1);
+}
+@media(hover:hover) and (pointer:fine){
+ [data-name="Orbital emblem"]:hover > p {transform:rotate(90deg) scale(1.08);}
+}
+@media(prefers-reduced-motion:reduce){
+ [data-name="Orbital emblem"] > p {transition:none;transform:none!important;}
+}
+
+/* Tactical Strava link: corner brackets, inset depth, mechanical press. */
+.tactical-strava{position:relative;display:inline-flex;align-items:center;justify-content:space-between;gap:32px;min-height:58px;margin-top:8px;padding:18px 24px;background:#141614;color:#dadada;font:12px/1.5 "IBM Plex Mono",monospace;letter-spacing:.5px;text-decoration:none;box-shadow:inset 0 1px 0 #383c35,0 4px 0 #080908;cursor:pointer;transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 160ms ease;}
+.tactical-strava i{position:absolute;width:12px;height:12px;border-color:#969c93;border-style:solid;transition:transform 160ms cubic-bezier(0.23,1,0.32,1);}
+.tactical-strava .tl{top:0;left:0;border-width:2px 0 0 2px;}.tactical-strava .tr{top:0;right:0;border-width:2px 2px 0 0;}.tactical-strava .bl{bottom:0;left:0;border-width:0 0 2px 2px;}.tactical-strava .br{bottom:0;right:0;border-width:0 2px 2px 0;}
+.tactical-strava>span:nth-child(2){color:#c0fb30;font-size:20px;}
+.tactical-strava:disabled{cursor:default;}
+@media(hover:hover) and (pointer:fine){.tactical-strava:hover{transform:translateY(-2px);background:#20251c;}.tactical-strava:hover i{border-color:#c0fb30;}.tactical-strava:hover .tl{transform:translate(-2px,-2px);}.tactical-strava:hover .tr{transform:translate(2px,-2px);}.tactical-strava:hover .bl{transform:translate(-2px,2px);}.tactical-strava:hover .br{transform:translate(2px,2px);}}
+.tactical-strava:active{transform:translateY(2px);}.tactical-strava:focus-visible{outline:2px solid #080908;outline-offset:6px;}
+@media(prefers-reduced-motion:reduce){.tactical-strava,.tactical-strava i{transition:none;transform:none!important;}}
+
+/* Strava uses the same rounded action style as the rest of the page. */
+.tactical-strava{gap:20px;min-height:0;padding:13px 20px;margin-top:8px;border:1px solid #080908;border-radius:100px;background:#080908;color:#dadada;font:700 13px/normal "Space Grotesk",sans-serif;letter-spacing:normal;box-shadow:none;}
+.tactical-strava i{display:none;}
+.tactical-strava>span:nth-child(2){font:400 19px/normal "Space Grotesk",sans-serif;color:#c0fb30;}
+@media(hover:hover) and (pointer:fine){.tactical-strava:hover{transform:none;background:#141614;}}
+.tactical-strava:active{transform:none;}
+
+/* Gear stars share the tournament star's hover movement. */
+[data-name="Equipment repository"] [data-name="Category heading"] > p:last-child {
+ transform-origin:center;transition:transform 250ms cubic-bezier(0.23,1,0.32,1);
+}
+@media(hover:hover) and (pointer:fine){
+ [data-name="Equipment repository"] [data-name="Gear category"]:hover [data-name="Category heading"] > p:last-child {transform:translateY(-3px) rotate(90deg) scale(1.08);}
+}
+@media(prefers-reduced-motion:reduce){
+ [data-name="Equipment repository"] [data-name="Category heading"] > p:last-child {transition:none;transform:none!important;}
+}
+/* Past tournament variation keeps the existing badge geometry. */
+.past-tournament-card [data-name="Status"]{background:#dadada;}
+.past-tournament-card [data-name="Status"] p{color:#080908;}
+[data-name="Past tournament entry"][hidden]{display:none!important;}
+[data-name="Upcoming tournaments"] [data-name="Heading"] p{white-space:normal;overflow-wrap:anywhere;}
+
+/* Gear card elevation: a restrained lift, with no layout shift. */
+[data-name="Equipment repository"] [data-name="Gear categories"],
+[data-name="Equipment repository"] [data-name="Gear category"] {overflow:visible;}
+[data-name="Equipment repository"] [data-name="Gear item"] {
+ transition:transform 220ms cubic-bezier(0.23,1,0.32,1),box-shadow 220ms ease;
+}
+@media(hover:hover) and (pointer:fine){
+ [data-name="Equipment repository"] [data-name="Gear item"]:hover {
+  transform:translateY(-5px);box-shadow:0 12px 22px rgba(0,0,0,.28);z-index:1;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ [data-name="Equipment repository"] [data-name="Gear item"] {transition:none;}
+ [data-name="Equipment repository"] [data-name="Gear item"]:hover {transform:none;}
+}
+
+/* Equal tournament cards, with content naturally filling the available height. */
+[data-name="Tournament entries"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;align-items:stretch;}
+[data-name="Tournament card"]{height:100%;}
+[data-name="Tournament card"] [data-name="Details card"]{flex:1;}
+[data-name="Tournament card"] [data-name="🔁 Slot"]{display:flex;flex-direction:column;flex:1;}
+[data-name="Tournament card"] [data-name="🔁 Slot"]>div{height:auto;flex:1;}
+[data-name="Tournament card"] [data-name="Anchor"]{margin-top:auto;}
+.mobile-view [data-name="Tournament entries"]{grid-template-columns:minmax(0,1fr);}
+/* Result first as plain text, then the black LAST GAME pill. */
+.latest-match-status>[data-name="Status"]{background:transparent;padding:0;border:0;border-radius:0;}
+.latest-match-status>[data-name="Status"] p{color:#080908;font:400 13px/20px "Space Grotesk",sans-serif;}
+.latest-match-status>p{background:#080908;color:#dadada;border-radius:100px;padding:2px 6px;line-height:16px;font-size:10px;}
+
+/* Front view from the supplied multi-view sheet; original image stays intact. */
+.oysho-bag-card .bag-artwork{width:100%;height:220px;}
+.bag-view{position:relative;width:260px;max-width:100%;height:220px;overflow:hidden;}
+.bag-render{position:absolute;left:0;top:0;width:887px;height:443.5px;max-width:none;}
+.gear-product-link{color:#c0fb30;font:14px/20px "Space Grotesk",sans-serif;text-decoration:underline;text-underline-offset:3px;}
+.gear-product-link:focus-visible{outline:2px solid #c0fb30;outline-offset:4px;}
+.bag-angle{position:absolute;top:0;left:50%;height:220px;overflow:hidden;transform:translateX(-50%);pointer-events:none;}
+.bag-angle img{position:absolute;top:0;left:0;width:887px;height:443.5px;max-width:none;}
+
+/* Notebook browsing uses the existing type, palette and border treatment. */
+.gear-controls{display:flex;align-items:flex-end;flex-wrap:wrap;gap:20px;padding:4px 0 28px;width:100%;}
+.gear-controls label{display:flex;flex-direction:column;gap:8px;color:#969c93;font:10px/16px "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em;}
+.gear-controls select{min-width:160px;padding:11px 34px 11px 14px;border:1px solid #383c35;border-radius:24px;background:#141614;color:#dadada;font:13px/20px "Space Grotesk",sans-serif;cursor:pointer;color-scheme:dark;}
+.gear-controls select:focus-visible{outline:2px solid #c0fb30;outline-offset:3px;}
+.gear-result-count{margin-left:auto;padding-bottom:12px;color:#969c93;font:11px/16px "IBM Plex Mono",monospace;}
+[data-name="Equipment repository"] .gear-sorted-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch;}
+.gear-entry{display:flex;flex-direction:column;gap:20px;min-width:0;}
+.gear-entry>[data-name="Gear item"]{flex:1;width:100%;}
+.gear-entry [data-name="Category heading"]{width:100%;}
+.gear-entry[hidden]{display:none!important;}
+@media(max-width:767px){[data-name="Equipment repository"] .gear-sorted-grid{grid-template-columns:minmax(0,1fr);}.gear-controls{gap:14px;}.gear-controls label{flex:1;}.gear-controls select{width:100%;min-width:130px;}.gear-result-count{width:100%;margin:0;padding:0;}}
+.gear-status-owned{background:#dadada!important;color:#080908;}
+.gear-status-owned p{color:#080908!important;}
+.gear-status-archived,.gear-status-placeholder{background:transparent!important;border:1px solid #383c35;border-radius:20px;}
+.gear-status-archived p,.gear-status-placeholder p{color:#969c93!important;}
+.gear-empty{padding:24px 0;color:#969c93;font:14px/22px "Space Grotesk",sans-serif;}
+.gear-empty[hidden]{display:none;}

@@ -1,0 +1,22 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="300" height="130" viewBox="0 0 300 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Orbital linework" clip-path="url(#clip0_0_5208)">
+<mask id="stroke0_0_5208" fill="white">
+<path d="M300 65C300 100.899 232.843 130 150 130C67.1573 130 0 100.899 0 65C0 29.1015 67.1573 0 150 0C232.843 0 300 29.1015 300 65Z"/>
+</mask>
+<path id="Orbit" d="M300 65C300 100.899 232.843 130 150 130C67.1573 130 0 100.899 0 65C0 29.1015 67.1573 0 150 0C232.843 0 300 29.1015 300 65Z" stroke-width="2" stroke="#080908" mask="url(#stroke0_0_5208)"/>
+<mask id="stroke1_0_5208" fill="white">
+<path d="M225 65C225 100.899 191.421 130 150 130C108.579 130 75 100.899 75 65C75 29.1015 108.579 0 150 0C191.421 0 225 29.1015 225 65Z"/>
+</mask>
+<path id="Meridian" d="M225 65C225 100.899 191.421 130 150 130C108.579 130 75 100.899 75 65C75 29.1015 108.579 0 150 0C191.421 0 225 29.1015 225 65Z" stroke-width="2" stroke="#080908" mask="url(#stroke1_0_5208)"/>
+<mask id="stroke2_0_5208" fill="white">
+<path d="M180 65C180 100.899 166.569 130 150 130C133.431 130 120 100.899 120 65C120 29.1015 133.431 0 150 0C166.569 0 180 29.1015 180 65Z"/>
+</mask>
+<path id="Meridian_2" d="M180 65C180 100.899 166.569 130 150 130C133.431 130 120 100.899 120 65C120 29.1015 133.431 0 150 0C166.569 0 180 29.1015 180 65Z" stroke-width="2" stroke="#080908" mask="url(#stroke2_0_5208)"/>
+<path id="Equator" d="M0 65H300" stroke="#080908"/>
+</g>
+<defs>
+<clipPath id="clip0_0_5208">
+<rect width="300" height="130" fill="white"/>
+</clipPath>
+</defs>
+</svg>
