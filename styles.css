@@ -526,3 +526,8 @@
 @media(hover:hover) and (pointer:fine){.past-tournament-card:hover .tournament-external-arrow{transform:translate(3px,-3px);}}
 .past-tournament-card:focus-within .tournament-external-arrow{transform:translate(3px,-3px);}
 @media(prefers-reduced-motion:reduce){.tournament-external-arrow{transition:none;transform:none!important;}}
+/* Hero actions keep their original arrow glyph; only its position changes. */
+[data-name="Hero"] [data-name="Action"]>p:last-child{transition:transform 250ms cubic-bezier(.23,1,.32,1);}
+@media(hover:hover) and (pointer:fine){[data-name="Hero"] [data-name="Action"]:hover>p:last-child{transform:translate(3px,-3px);}}
+[data-name="Hero"] [data-name="Action"]:focus-visible>p:last-child{transform:translate(3px,-3px);}
+@media(prefers-reduced-motion:reduce){[data-name="Hero"] [data-name="Action"]>p:last-child{transition:none;transform:none!important;}}
