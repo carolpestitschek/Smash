@@ -297,3 +297,6 @@
 
 [data-name="Hero"] [data-name="Display title"]{padding-bottom:0}
 [data-name="Hero"] [data-name="Display title"]>p{line-height:1.15}
+/* An editorial eyebrow, visually distinct from interactive pill buttons. */
+[data-name="Hero"] [data-name="Status"]{background:transparent;border:0;border-radius:0!important;padding:6px 0!important;min-height:0!important;color:#c0fb30;cursor:default}
+[data-name="Hero"] [data-name="Status"] p{color:#c0fb30;font-size:11px;line-height:1.5;letter-spacing:1.2px}
