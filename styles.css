@@ -498,3 +498,6 @@
 .gear-entry [data-name="Anchor"]{margin-top:auto;padding-top:20px;}
 .gear-entry [data-name="Heading"]{min-height:58px;}
 @media(max-width:767px){[data-name="Page links"]{flex-wrap:wrap;}.gear-entry>[data-name="Gear item"]{min-height:510px;}}
+
+/* Comfortable padding around the gear lifecycle labels. */
+[data-name="Equipment repository"] [data-name="Gear state"] [data-name="Status"]{padding:5px 10px;min-height:26px;height:auto;border-radius:100px;}
