@@ -29,7 +29,7 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
   field.append(select);toolbar.append(field);return select;
  };
  const category=makeSelect('Category',[['all','All categories'],...Array.from(new Set(entries.map(e=>e.name))).sort().map(n=>[n,n])]);
- const status=makeSelect('Show',[['all','All items'],['filled','Filled items'],['current','Currently using'],['owned','Owned · not in use'],['archived','Archived'],['collection','Collection']]);
+ const status=makeSelect('Show',[['all','All items'],['current','Currently using'],['owned','Owned · not in use'],['archived','Archived'],['collection','Collection']]);
  const sort=makeSelect('Sort by',[['default','Filled first · A–Z'],['alpha','Alphabetical · A–Z'],['oldest','Oldest added'],['newest','Newest added']]);
  const count=document.createElement('span');count.className='gear-result-count';count.setAttribute('aria-live','polite');toolbar.append(count);
  grid.before(toolbar);
@@ -42,7 +42,7 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
   });
   let shown=0;
   ordered.forEach(item=>{
-   const visible=(category.value==='all'||item.name===category.value)&&(status.value==='all'||(status.value==='filled'?item.filled:item.status===status.value));
+   const visible=(category.value==='all'||item.name===category.value)&&(status.value==='all'||item.status===status.value);
    item.entry.hidden=!visible;if(visible)shown++;grid.append(item.entry);
   });
   count.textContent=`${shown} ${shown===1?'item':'items'}`;empty.hidden=shown!==0;
