@@ -49,6 +49,8 @@ window.galleryPhotos=[
   },
   {
     "src": "assets/gallery/court-moment-09-fixed.jpg",
-    "alt": "Players between points at Padel Social Club in black and white"
+    "alt": "Players between points at Padel Social Club in black and white",
+    "photographer": "@absent.ink",
+    "photographerUrl": "https://absent.ink/"
   }
 ];

@@ -5,3 +5,11 @@
 .gallery-photo{border:0;background:transparent}.gallery-more{padding:48px 0 8px;text-align:center;color:#969c93;font:14px/1.6 "Space Grotesk",sans-serif}.gallery-more span{color:#c0fb30;margin-left:8px}
 
 .gallery-photo{position:relative}.gallery-photo:has(.photographer-credit) figcaption{position:absolute;left:16px;bottom:16px;padding:0;z-index:1}.gallery-photo figcaption>span:empty{display:none}.photographer-credit{display:inline-flex;align-items:center;background:#c0fb30;color:#080908;border:0;border-radius:100px;padding:5px 10px;min-height:26px;font:10px/1.5 "IBM Plex Mono",monospace;box-shadow:0 2px 8px #0002}.photographer-credit:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* A flowing photo journal keeps original framing and removes empty grid tracks. */
+.gallery-grid{display:block;columns:3;column-gap:24px}.gallery-photo{break-inside:avoid;margin:0 0 24px;overflow:hidden}.gallery-photo:nth-child(3n+2){padding-top:0}.gallery-photo button{position:relative}.gallery-photo img{transition:transform 250ms cubic-bezier(.23,1,.32,1),filter 250ms cubic-bezier(.23,1,.32,1)}.gallery-photo button:after{content:'↗';position:absolute;right:16px;top:16px;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#c0fb30;color:#080908;font-size:22px;opacity:0;transform:translateY(6px);transition:transform 250ms cubic-bezier(.23,1,.32,1),opacity 200ms ease}
+@media(hover:hover) and (pointer:fine){.gallery-photo button:hover img{transform:scale(1.035)}.gallery-photo button:hover:after{opacity:1;transform:translateY(0)}}
+@media(min-width:768px){.gallery-grid{padding-top:32px}.gallery-photo:first-child{margin-top:0}.gallery-photo:nth-child(4){padding-top:40px}.gallery-photo:nth-child(7){padding-top:80px}}
+@media(max-width:1000px) and (min-width:768px){.gallery-grid{columns:2}}@media(max-width:767px){.gallery-grid{columns:1}}@media(prefers-reduced-motion:reduce){.gallery-photo img,.gallery-photo button:after{transition:none}.gallery-photo button:hover img{transform:none}.gallery-photo button:after{transform:none}}
+
+.photographer-credit{background:rgba(8,9,8,.76);color:#f1f2ed;border:1px solid rgba(241,242,237,.6);box-shadow:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}.photographer-credit:hover{background:rgba(8,9,8,.9);border-color:#f1f2ed}

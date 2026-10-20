@@ -15,3 +15,6 @@ document.querySelector('#gallery-empty').hidden=photos.length>0;
 document.querySelector('#gallery-count').textContent=photos.length?`${photos.length} ${photos.length===1?'MOMENT':'MOMENTS'} / ON & OFF COURT`:'MORE MOMENTS TO COME';
 document.querySelector('#close-photo').addEventListener('click',()=>viewer.close());
 if(matchMedia('(max-width:767px)').matches)document.querySelectorAll('a[href*="#desktop-"]').forEach(a=>a.href=a.getAttribute('href').replace('#desktop-','#mobile-'));
+
+// Reveal only photos entering the viewport; content stays visible without JS.
+(()=>{const reduce=matchMedia('(prefers-reduced-motion:reduce)');const active=new Set();const observer=new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>{if(!isIntersecting)return;observer.unobserve(target);if(reduce.matches)return;const animation=target.animate([{opacity:0,transform:'translateY(24px)'},{opacity:1,transform:'translateY(0)'}],{duration:600,easing:'cubic-bezier(.23,1,.32,1)',fill:'backwards'});active.add(animation);animation.onfinish=()=>active.delete(animation);}),{threshold:.08});document.querySelectorAll('.gallery-photo').forEach(el=>observer.observe(el));const stop=()=>{active.forEach(a=>a.cancel());active.clear();};reduce.addEventListener('change',stop);document.addEventListener('keydown',stop,{capture:true});})();
