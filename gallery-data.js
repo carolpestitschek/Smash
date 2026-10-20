@@ -1,5 +1,11 @@
 window.galleryPhotos=[
   {
+    "src": "assets/gallery/court-moment-09-fixed.jpg",
+    "alt": "Players between points at Padel Social Club in black and white",
+    "photographer": "@absent.ink",
+    "photographerUrl": "https://absent.ink/"
+  },
+  {
     "src": "assets/gallery/court-moment-01.jpg",
     "alt": "Black-and-white portrait holding a padel racket beside the net",
     "photographer": "@londonpadelphotographer",
@@ -46,11 +52,5 @@ window.galleryPhotos=[
     "alt": "Preparing a shot beside the court fence in black and white",
     "photographer": "@londonpadelphotographer",
     "photographerUrl": "https://www.instagram.com/londonpadelphotographer/"
-  },
-  {
-    "src": "assets/gallery/court-moment-09-fixed.jpg",
-    "alt": "Players between points at Padel Social Club in black and white",
-    "photographer": "@absent.ink",
-    "photographerUrl": "https://absent.ink/"
   }
 ];
