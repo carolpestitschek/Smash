@@ -8,11 +8,31 @@
    if(!isIntersecting)return;
    observer.unobserve(target);
    if(reduce.matches)return;
-   [...target.children].filter(el=>getComputedStyle(el).position!=='absolute').forEach((el,index)=>{
+   if(target.dataset.name==='Player profile'){
+    const lines=[...target.querySelectorAll('[data-name="Display title"] p')];
+    const line=lines.at(-1);if(!line)return;
+    const text=line.textContent.trim();line.classList.add('about-scramble-line');line.setAttribute('aria-label',text);
+    const visual=document.createElement('span');visual.setAttribute('aria-hidden','true');
+    const glyphs=[...text].map(character=>{const span=document.createElement('span');span.textContent=character;span.style.whiteSpace='pre';span.style.width=character===' '?'.35em':undefined;visual.append(span);return span;});
+    line.replaceChildren(visual);
+    // Stable per-character widths prevent the heading from jumping as glyphs resolve.
+    glyphs.forEach(span=>{span.style.width=span.getBoundingClientRect().width+'px';span.style.display='inline-block';span.style.textAlign='center';});
+    const symbols='*+01<>/#';let frame=0;
+    const finish=()=>{glyphs.forEach((span,i)=>span.textContent=text[i]);};
+    const timer=setInterval(()=>{
+     if(reduce.matches||document.hidden){clearInterval(timer);finish();return;}
+     glyphs.forEach((span,i)=>{span.textContent=text[i]===' '?' ':frame>5+i*2?text[i]:symbols[(frame+i*3)%symbols.length];});
+     frame++;if(frame>5+text.length*2){clearInterval(timer);finish();}
+    },45);
+    return;
+   }
+   const recent=target.dataset.name==='Upcoming game list';
+   const targets=recent?[target.querySelector('[data-name="Schedule heading"]'),...target.querySelectorAll('[data-name="Game entry"]')].filter(Boolean):[...target.children].filter(el=>getComputedStyle(el).position!=='absolute');
+   targets.forEach((el,index)=>{
     const animation=el.animate([
-     {opacity:0,transform:'translateY(24px)'},
+     {opacity:0,transform:recent&&index>0?'translateY(20px)':'translateY(24px)'},
      {opacity:1,transform:'translateY(0)'}
-    ],{duration:600,delay:Math.min(index,3)*80,easing:'cubic-bezier(0.23, 1, 0.32, 1)',fill:'backwards'});
+    ],{duration:600,delay:Math.min(index,3)*(recent?180:80),easing:'cubic-bezier(0.23, 1, 0.32, 1)',fill:'backwards'});
     running.add(animation);animation.onfinish=()=>running.delete(animation);
    });
   });

@@ -578,3 +578,47 @@
 /* An editorial eyebrow, visually distinct from interactive pill buttons. */
 [data-name="Hero"] [data-name="Status"]{background:transparent;border:0;border-radius:0!important;padding:6px 0!important;min-height:0!important;color:#c0fb30;cursor:default}
 [data-name="Hero"] [data-name="Status"] p{color:#c0fb30;font-size:11px;line-height:1.5;letter-spacing:1.2px}
+
+/* Recent matches arrive in sequence; hover highlights the active row. */
+[data-name="Upcoming game list"] [data-name="Match schedule"]{overflow:visible}
+[data-name="Upcoming game list"] [data-name="Game entry"]{transition:background-color 180ms ease}
+[data-name="Upcoming game list"] [data-name="Game entry"]::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:#c0fb30;transform:scaleX(0);transform-origin:left;transition:transform 250ms cubic-bezier(.23,1,.32,1);pointer-events:none}
+@media(hover:hover) and (pointer:fine){[data-name="Upcoming game list"] [data-name="Game entry"]:hover{background:#141614}[data-name="Upcoming game list"] [data-name="Game entry"]:hover::after{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){[data-name="Upcoming game list"] [data-name="Game entry"], [data-name="Upcoming game list"] [data-name="Game entry"]::after{transition:none}}
+.animated-match-score{font-variant-numeric:tabular-nums}
+.score-digit{display:inline-block;height:1.5em;width:.65em;overflow:hidden;vertical-align:middle;text-align:center}
+.score-digit-track{display:block}
+.score-digit-track>span{display:block;height:1.5em;line-height:1.5}
+/* The active court has one gentle beacon, including the default selection. */
+.club-pin[aria-pressed="true"]{outline:none;overflow:visible}
+.club-pin[aria-pressed="true"]::after{content:"";position:absolute;inset:-7px;border:2px solid #c0fb30;border-radius:inherit;pointer-events:none;animation:selected-court-ring 1800ms ease-in-out infinite}
+@keyframes selected-court-ring{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:.15;transform:scale(1.18)}}
+.club-pin[aria-pressed="true"]:focus-visible{outline:2px solid #dadada;outline-offset:5px}
+@media(prefers-reduced-motion:reduce){.club-pin[aria-pressed="true"]::after{animation:none;opacity:.8}}
+/* Match the hero actions' centered label and icon geometry. */
+.tactical-strava{align-self:flex-start;align-items:center;justify-content:center;gap:16px;min-height:50px;padding:14px 20px}
+.tactical-strava>span:first-child{line-height:20px}
+.tactical-strava>span:nth-child(2){display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;line-height:1;flex-shrink:0}
+
+.about-scramble-line{white-space:nowrap;overflow:visible;line-height:1.25!important}
+@media(max-width:767px){
+ .mobile-view [data-name="Featured match"]{padding-top:24px}
+ .mobile-view [data-name="Featured match"] [data-name="Court illustration"]{width:100%;height:auto;flex-direction:column;gap:18px;padding:0 24px;overflow:visible}
+ .mobile-view [data-name="Featured match"] [data-name="Padel court"]{max-width:100%}
+ .mobile-view [data-name="Featured match"] [data-name="Court illustration"]>p{position:static;transform:none;align-self:flex-start;white-space:normal;font-size:10px;line-height:1.5}
+ .mobile-view [data-name="Featured match"] [data-name="Match details"]{padding:24px}
+}
+/* Paper grain and creases are clipped to each existing footer sticker. */
+[data-name="Footer"] .footer-sticker img{filter:url("#footer-paper")}
+[data-name="Connect and play"] [data-name="Profile connections"] [data-name="Action"]{width:158px;height:52px;display:inline-flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px}
+[data-name="Connect and play"] [data-name="Action"]>p{line-height:20px;margin:0}
+[data-name="Connect and play"] .diagonal-action-arrow{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;flex-shrink:0}
+[data-name="Hero"] .hero-mascot{width:100%;height:100%;display:block;transform:scale(1.28);transform-origin:center;overflow:visible}
+[data-name="Hero"] [data-name="Profile actions"] [data-name="Action"]{width:160px;height:50px;justify-content:space-between}
+/* Full-width closing invitation band, with the content column preserved. */
+[data-name="Connect and play"]{box-shadow:0 0 0 100vmax #c0fb30;clip-path:inset(0 -100vmax)}
+.club-pin-leaders{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.club-pin-leaders line{stroke:#969c93;stroke-width:1;opacity:.5}
+.club-pin{z-index:1;display:flex;align-items:center;justify-content:center;border:3px solid #080908;border-radius:50%;background:#dadada;color:#080908;font:600 12px/1 'IBM Plex Mono',monospace}
+.club-pin[aria-pressed="true"]{z-index:3;background:#c0fb30}
+.club-pin{position:absolute}

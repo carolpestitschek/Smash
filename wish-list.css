@@ -28,3 +28,11 @@
 /* Die-cut sticker edge follows the transparent product silhouette. */
 .wish-product-view canvas{filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 8px 7px #0008)}
 .wish-sticker>img{filter:drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 8px 7px #0008)}
+/* Pointer selection stays clean; keyboard navigation retains a visible cue. */
+.wish-sticker:focus,.wish-close:focus{outline:none}
+.wish-sticker:focus-visible{outline:1px dashed #969c93;outline-offset:5px}
+.wish-close:focus-visible{outline:1px solid #969c93;outline-offset:5px}
+.wish-page .wish-sticker:focus{outline:none}
+.wish-page .wish-sticker:focus-visible{outline:1px dashed #969c93;outline-offset:5px}
+.wish-page .wish-close:focus{outline:none}
+.wish-page .wish-close:focus-visible{outline:1px solid #969c93;outline-offset:5px}

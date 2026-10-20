@@ -1,10 +1,11 @@
+const paperFilter=document.createElement('div');paperFilter.setAttribute('aria-hidden','true');paperFilter.style.cssText='position:absolute;width:0;height:0;overflow:hidden;pointer-events:none';paperFilter.innerHTML="<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><filter id=\"footer-paper\" x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" color-interpolation-filters=\"sRGB\"><feImage href=\"assets/footer-paper-soft-texture.png\" preserveAspectRatio=\"none\" x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" result=\"paper\"/><feComponentTransfer in=\"paper\" result=\"creased\"><feFuncR type=\"linear\" slope=\"1\" intercept=\"0\"/><feFuncG type=\"linear\" slope=\"1\" intercept=\"0\"/><feFuncB type=\"linear\" slope=\"1\" intercept=\"0\"/></feComponentTransfer><feComposite in=\"creased\" in2=\"SourceGraphic\" operator=\"in\" result=\"texture\"/><feBlend in=\"SourceGraphic\" in2=\"texture\" mode=\"multiply\"/></filter></svg>\n";document.body.append(paperFilter);
 // A lightweight sticker board with mouse, touch and keyboard dragging.
 const stickerReducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
 const stickerSet=[
  ['carol-padel-globe','Carol Padel globe — Play Connect Repeat',.05,.2,155,-9],
  ['racket-lime','Lime padel racket',.75,.05,145,10],
  ['cp-orbit','CP orbit',.34,.05,155,-7],
- ['play-padel-repeat','Play padel repeat',.2,.65,145,7],
+ ['play-padel-repeat-white','Play padel repeat',.2,.65,145,7],
  ['smiley','Smiley face',.57,.66,120,-10],
  ['padel-lifestyle','Padel is a lifestyle',.81,.7,175,8],
  ['sparkle','Lime sparkle',.52,.12,85,12]

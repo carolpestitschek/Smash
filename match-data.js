@@ -55,5 +55,38 @@ document.querySelectorAll('.past-tournament-card [data-name="Tournament banner"]
 });
 
 // Club visit dates supplied by Carol.
-const addedClubVisits={"Rocket Padel Ilford": "8 Sep 2026", "PADELHUB Slough": "25 Aug 2025", "National Tennis Centre Padel": "28 Apr 2026", "Padel Box Bermondsey": "30 Aug 2025", "Rocks Lane Chiswick Padel": "24 Jul 2025"};
+const addedClubVisits={"The Padel Yard – G4P":"13 Aug 2025","Rocket Padel Ilford": "8 Sep 2026", "PADELHUB Slough": "25 Aug 2025", "National Tennis Centre Padel": "28 Apr 2026", "Padel Box Bermondsey": "30 Aug 2025", "Rocks Lane Chiswick Padel": "24 Jul 2025"};
 document.querySelectorAll('[data-name="Club card"]').forEach(card=>{for(const [name,date] of Object.entries(addedClubVisits))if(card.textContent.includes(name))replaceText(card,'Visit: [Date to add]','Latest visit: '+date);});
+
+// Roll only the score digits; the real result remains the accessible label.
+(() => {
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)'),active=new Set();
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(!entry.isIntersecting)return;observer.unobserve(entry.target);
+  if(reduce.matches)return;
+  const reveal=entry.target.animate([{opacity:0},{opacity:1}],{duration:250,delay:(Number(entry.target.dataset.scoreOrder)+1)*180,easing:'cubic-bezier(.23,1,.32,1)',fill:'backwards'});
+  active.add(reveal);reveal.onfinish=()=>active.delete(reveal);
+  entry.target.querySelectorAll('.score-digit-track').forEach((track,index)=>{
+   const animation=track.animate([{transform:'translateY(0)'},{transform:`translateY(-${track.dataset.steps*1.5}em)`}],{duration:700,delay:(Number(entry.target.dataset.scoreOrder)+1)*180+index*45,easing:'cubic-bezier(.23,1,.32,1)',fill:'backwards'});
+   active.add(animation);animation.onfinish=()=>active.delete(animation);
+  });
+ }),{rootMargin:'0px 0px -64px 0px'});
+ document.querySelectorAll('[data-name="Upcoming game list"] [data-name="Game entry"] p, [data-name="Club directory"] p').forEach(p=>{
+  const text=p.textContent.trim();if(!/^Won ·/.test(text)&&!text.includes("15 PLACES I'VE PLAYED"))return;
+  p.setAttribute('aria-label',text);p.classList.add('animated-match-score');
+  const list=p.closest('[data-name="Upcoming game list"]');
+  p.dataset.scoreOrder=list?[...list.querySelectorAll('[data-name="Game entry"]')].indexOf(p.closest('[data-name="Game entry"]')):0;
+  const visual=document.createElement('span');visual.setAttribute('aria-hidden','true');
+  for(const character of text){
+   if(!/\d/.test(character)){visual.append(document.createTextNode(character));continue;}
+   const digit=document.createElement('span');digit.className='score-digit';
+   const track=document.createElement('span');track.className='score-digit-track';const steps=10+Number(character);track.dataset.steps=steps;track.style.transform=`translateY(-${steps*1.5}em)`;
+   for(let i=0;i<=steps;i++){const n=document.createElement('span');n.textContent=i%10;track.append(n);}
+   digit.append(track);visual.append(digit);
+  }
+  p.replaceChildren(visual);observer.observe(p);
+ });
+ const stop=()=>{active.forEach(a=>a.cancel());active.clear();};
+ reduce.addEventListener('change',()=>{if(reduce.matches)stop();});
+ document.addEventListener('keydown',stop,{capture:true});
+})();
