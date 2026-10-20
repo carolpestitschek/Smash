@@ -346,3 +346,5 @@
 .club-pin{position:absolute}
 
 .gear-see-more{display:block;margin:24px 0 0 auto;padding:12px 24px;background:transparent;color:#dadada;border:1px solid #383c35;cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:12px;transition:color .2s,border-color .2s}.gear-see-more:hover{color:#c0fb30;border-color:#c0fb30}.gear-see-more:focus-visible{outline:2px solid #c0fb30;outline-offset:4px}.gear-see-more[hidden]{display:none}
+
+[data-name="Connect and play"] [data-name="Profile connections"]{align-items:flex-end}
