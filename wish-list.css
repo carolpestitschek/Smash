@@ -36,3 +36,5 @@
 .wish-page .wish-sticker:focus-visible{outline:1px dashed #969c93;outline-offset:5px}
 .wish-page .wish-close:focus{outline:none}
 .wish-page .wish-close:focus-visible{outline:1px solid #969c93;outline-offset:5px}
+
+.wish-atlas-photo{width:100%;aspect-ratio:1;background-size:400% 200%;background-position:0 0;background-repeat:no-repeat}#wish-detail-content>.wish-atlas-photo{margin-bottom:24px}

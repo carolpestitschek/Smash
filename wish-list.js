@@ -3,7 +3,7 @@
  const renderSprite=(viewport,item)=>{
   const image=new Image();image.src=item.sprite;image.decode().then(()=>{
    const regions=Array.from({length:8},(_,i)=>{const x=Math.round(i%4*image.naturalWidth/4),y=Math.round(Math.floor(i/4)*image.naturalHeight/2);return [x,y,Math.round((i%4+1)*image.naturalWidth/4)-x,Math.round((Math.floor(i/4)+1)*image.naturalHeight/2)-y];});
-   return window.renderProductSprite(viewport,item.sprite,regions,{initial:2});
+   return window.renderProductSprite(viewport,item.sprite,regions,{initial:item.initial??2});
   }).catch(()=>{viewport.textContent='';const img=document.createElement('img');img.src=item.image;img.alt=item.name;viewport.append(img);});
  };
  const storageKey='smash-wish-positions-v1';let saved={},layer=1;
@@ -12,6 +12,7 @@
  const safeUrl=value=>{try{const url=new URL(value,location.href);return ['https:','http:'].includes(url.protocol)?url.href:null;}catch{return null;}};
  function show(item){
   content.replaceChildren();
+  if(item.spritePhotos){const photo=document.createElement('div');photo.className='wish-atlas-photo';photo.style.backgroundImage=`url("${item.sprite}")`;content.append(photo);const gallery=document.createElement('div');gallery.className='wish-detail-photos';[0,1,4,6].forEach((frame,i)=>{const button=document.createElement('button');button.type='button';button.setAttribute('aria-label','View product photo '+(i+1));const view=document.createElement('div');view.className='wish-atlas-photo';view.style.backgroundImage=`url("${item.sprite}")`;const position=`${frame%4*100/3}% ${frame<4?0:100}%`;view.style.backgroundPosition=position;button.append(view);button.addEventListener('click',()=>photo.style.backgroundPosition=position);gallery.append(button);});content.append(gallery);}
   if(item.image){const img=document.createElement('img');img.src=item.image;img.alt=item.name;content.append(img);}
   if(item.photos?.length){const gallery=document.createElement('div');gallery.className='wish-detail-photos';item.photos.forEach((src,i)=>{const button=document.createElement('button');button.type='button';button.setAttribute('aria-label','View product photo '+(i+1));const img=document.createElement('img');img.src=src;img.alt='';button.append(img);button.addEventListener('click',()=>{content.querySelector(':scope>img').src=src;});gallery.append(button);});content.append(gallery);}
   const tag=document.createElement('p');tag.textContent=item.category||'Other';const title=document.createElement('h2');title.id='wish-detail-title';title.textContent=item.name;content.append(tag,title);

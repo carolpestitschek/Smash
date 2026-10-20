@@ -622,3 +622,5 @@
 .club-pin{z-index:1;display:flex;align-items:center;justify-content:center;border:3px solid #080908;border-radius:50%;background:#dadada;color:#080908;font:600 12px/1 'IBM Plex Mono',monospace}
 .club-pin[aria-pressed="true"]{z-index:3;background:#c0fb30}
 .club-pin{position:absolute}
+
+.gear-see-more{display:block;margin:24px 0 0 auto;padding:12px 24px;background:transparent;color:#dadada;border:1px solid #383c35;cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:12px;transition:color .2s,border-color .2s}.gear-see-more:hover{color:#c0fb30;border-color:#c0fb30}.gear-see-more:focus-visible{outline:2px solid #c0fb30;outline-offset:4px}.gear-see-more[hidden]{display:none}

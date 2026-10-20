@@ -22,7 +22,7 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
  });
  grid.replaceChildren();grid.classList.add('gear-sorted-grid');
  const groups=new Map();
- ['Rackets','Shoes','Accessories'].filter(name=>entries.some(e=>e.name===name)).forEach(name=>{const section=document.createElement('section');section.className='gear-category-group';const heading=document.createElement('div');heading.className='gear-group-heading';const title=document.createElement('h3');title.textContent=name;const star=document.createElement('span');star.textContent='✦';star.setAttribute('aria-hidden','true');heading.append(title,star);const cards=document.createElement('div');cards.className='gear-group-cards';section.append(heading,cards);grid.append(section);groups.set(name,{section,cards});});
+ ['Rackets','Shoes','Courtwear','Accessories'].filter(name=>entries.some(e=>e.name===name)).forEach(name=>{const section=document.createElement('section');section.className='gear-category-group';const heading=document.createElement('div');heading.className='gear-group-heading';const title=document.createElement('h3');title.textContent=name;const star=document.createElement('span');star.textContent='✦';star.setAttribute('aria-hidden','true');heading.append(title,star);const cards=document.createElement('div');cards.className='gear-group-cards';section.append(heading,cards);grid.append(section);groups.set(name,{section,cards});});
  const toolbar=document.createElement('div');toolbar.className='gear-controls';
  const makeSelect=(label,options)=>{
   const field=document.createElement('label');field.append(document.createTextNode(label));
@@ -31,11 +31,14 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
   field.append(select);toolbar.append(field);return select;
  };
  const category=makeSelect('Category',[['all','All categories'],...Array.from(new Set(entries.map(e=>e.name))).sort().map(n=>[n,n])]);
- const status=makeSelect('Item status',[['all','All statuses'],['current','Currently using'],['collection','Collection'],['owned','Owned · not in use'],['archived','Archived']]);
+ const status=makeSelect('Item status',[['all','All status'],['current','Currently using'],['collection','Collection'],['owned','Owned · not in use'],['archived','Archived']]);
  const sort=makeSelect('Sort by',[['default','Item status'],['alpha','Alphabetical · A–Z'],['oldest','Oldest added'],['newest','Newest added']]);
  const count=document.createElement('span');count.className='gear-result-count';count.setAttribute('aria-live','polite');toolbar.append(count);
  grid.before(toolbar);
  const empty=document.createElement('p');empty.className='gear-empty';empty.textContent='No items in this selection yet.';empty.hidden=true;grid.after(empty);
+ const expanded=new Set();
+ const rowLimit=()=>innerWidth<768?1:3;
+ groups.forEach((group,name)=>{const button=document.createElement('button');button.type='button';button.className='gear-see-more';button.setAttribute('aria-expanded','false');button.addEventListener('click',()=>{if(expanded.has(name))expanded.delete(name);else expanded.add(name);render();observeCards();});group.section.append(button);group.button=button;});
  const render=()=>{
   const ordered=[...entries].sort((a,b)=>{
    if(sort.value==='default'){
@@ -45,13 +48,15 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
    if(sort.value==='oldest'||sort.value==='newest')return (sort.value==='oldest'?1:-1)*(a.added-b.added)||a.title.localeCompare(b.title);
    return a.title.localeCompare(b.title)||a.name.localeCompare(b.name);
   });
-  let shown=0;
+  let shown=0,total=0;const perCategory=new Map(),filtered=category.value!=='all'||status.value!=='all';
   ordered.forEach(item=>{
-   const visible=(category.value==='all'||item.name===category.value)&&(status.value==='all'||item.status===status.value);
+   const matches=(category.value==='all'||item.name===category.value)&&(status.value==='all'||item.status===status.value);
+   const index=perCategory.get(item.name)||0;if(matches){perCategory.set(item.name,index+1);total++;}
+   const visible=matches&&(filtered||expanded.has(item.name)||index<rowLimit());
    item.entry.hidden=!visible;if(visible)shown++;groups.get(item.name).cards.append(item.entry);
   });
-  groups.forEach(({section,cards})=>{section.hidden=![...cards.children].some(entry=>!entry.hidden);});
-  count.textContent=`${shown} ${shown===1?'item':'items'}`;empty.hidden=shown!==0;
+  groups.forEach(({section,cards,button},name)=>{section.hidden=![...cards.children].some(entry=>!entry.hidden);button.hidden=filtered||(perCategory.get(name)||0)<=rowLimit();button.textContent=expanded.has(name)?'See less':'See more';button.setAttribute('aria-label',`${button.textContent} ${name.toLowerCase()}`);button.setAttribute('aria-expanded',String(expanded.has(name)));});
+  count.textContent=shown<total?`${shown} of ${total} items`:`${shown} ${shown===1?'item':'items'}`;empty.hidden=shown!==0;
  };
  [category,status,sort].forEach(select=>select.addEventListener('change',()=>{render();observeCards();}));render();
  const reduce=matchMedia('(prefers-reduced-motion: reduce)'),revealed=new WeakSet(),animations=new Set();
@@ -68,4 +73,5 @@ document.querySelectorAll('[data-name="Equipment repository"]').forEach((reposit
  const stop=()=>{animations.forEach(a=>a.cancel());animations.clear();};
  reduce.addEventListener('change',()=>{if(reduce.matches)stop();});document.addEventListener('keydown',stop,{capture:true});
  observeCards();
+ let lastLimit=rowLimit();window.addEventListener('resize',()=>{if(lastLimit!==rowLimit()){lastLimit=rowLimit();render();observeCards();}});
 });
