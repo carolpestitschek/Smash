@@ -630,3 +630,6 @@
 .connect-title-star{display:inline-block;transform-origin:50% 48%;transition:transform 250ms cubic-bezier(.23,1,.32,1)}
 @media(hover:hover) and (pointer:fine){.connect-title-motion:hover .connect-title-star{transform:rotate(180deg)}}
 @media(prefers-reduced-motion:reduce){.connect-title-star{transition:none}.connect-title-motion:hover .connect-title-star{transform:none}}
+
+/* Enlarge the London illustration by 10%, preserving its centre and pin projection. */
+.desktop-view [data-name="Illustrative London map"] [data-name="London boundary"]{width:684.288px;height:352px;left:46.656px;top:29px}
