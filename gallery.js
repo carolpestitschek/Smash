@@ -7,7 +7,7 @@ photos.forEach(photo=>{
  const button=document.createElement('button');button.type='button';button.setAttribute('aria-label','Enlarge '+(photo.caption||photo.alt||'photo'));
  const image=document.createElement('img');image.src=photo.src;image.alt=photo.alt||'';image.loading='lazy';image.decoding='async';button.append(image);figure.append(button);
  const caption=document.createElement('figcaption');const text=document.createElement('span');text.textContent=photo.caption||'';caption.append(text);
- if(photo.photographer){const url=safeLink(photo.photographerUrl);const credit=document.createElement(url?'a':'span');credit.className='photographer-credit';credit.textContent='↗ '+(photo.photographer.startsWith('@')?photo.photographer:'@'+photo.photographer);if(url){credit.href=url;credit.target='_blank';credit.rel='noopener noreferrer';}credit.setAttribute('aria-label','Photo by '+photo.photographer);caption.append(credit);}
+ if(photo.photographer){const url=safeLink(photo.photographerUrl);const credit=document.createElement(url?'a':'span');credit.className='photographer-credit';credit.textContent=(photo.photographer.startsWith('@')?photo.photographer:'@'+photo.photographer);if(url){credit.href=url;credit.target='_blank';credit.rel='noopener noreferrer';}credit.setAttribute('aria-label','Photo by '+photo.photographer);caption.append(credit);}
  figure.append(caption);grid.append(figure);
  button.addEventListener('click',()=>{const full=document.querySelector('#viewer-image');full.src=photo.src;full.alt=photo.alt||'';document.querySelector('#viewer-caption').textContent=[photo.caption,photo.photographer?'Photo by '+photo.photographer:''].filter(Boolean).join(' · ');viewer.showModal();});
 });
