@@ -349,3 +349,6 @@
 
 [data-name="Connect and play"] [data-name="Profile connections"]{align-items:center}
 
+.connect-title-star{display:inline-block;transform-origin:50% 48%;transition:transform 250ms cubic-bezier(.23,1,.32,1)}
+@media(hover:hover) and (pointer:fine){.connect-title-motion:hover .connect-title-star{transform:rotate(180deg)}}
+@media(prefers-reduced-motion:reduce){.connect-title-star{transition:none}.connect-title-motion:hover .connect-title-star{transform:none}}
