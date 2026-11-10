@@ -24,13 +24,13 @@ document.querySelectorAll('main').forEach(view=>{
   });
  });
  const tournaments=view.querySelector('[data-name="Upcoming tournaments"]');
- replaceText(tournaments,'A place for upcoming entries, partners and tournament plans. Everything below is waiting for your details.','The next challenge, and one already played. My tournament calendar and past entries.');
+ replaceText(tournaments,'A place for upcoming entries, partners and tournament plans. Everything below is waiting for your details.','Tournament wins, past entries and the next challenge.');
  const events=[
-  {name:'North West London’s 1st Women’s Padel Tournament',date:'31 Oct 2026 · 11 am',venue:'Padel and Coffee',division:'Level 0–5 · Open',partner:'Partner: Anika V.',status:'Entry: You + 11/32 · £30',badge:'UPCOMING TOURNAMENT',link:'Event link to add'},
+  {name:'North West London’s 1st Women’s Padel Tournament',date:'31 Oct 2026 · 11 am',venue:'Padel and Coffee',division:'Level 0–5 · Open',partner:'Partner: Anika V.',status:'Result: Won · Carol + Anika V.',badge:'TOURNAMENT WINNERS',link:''},
   {name:'Silver Wilson Master final',date:'3 Oct 2026 · 10 am',venue:'Padel Social Club · Earls Court',division:'Level 2–3 · Open',partner:'Partner: Anika V.',status:'',badge:'PAST TOURNAMENT',link:'Recap to add'}
  ];
  tournaments.querySelectorAll('[data-name="Tournament card"]').forEach((card,i)=>{
-  const e=events[i];card.classList.toggle('past-tournament-card',i===1);
+  const e=events[i];card.classList.add('past-tournament-card');if(i===0)card.classList.add('tournament-winner-card');
   [['UPCOMING SLOT',e.badge],['[Tournament name]',e.name],['[Next tournament name]',e.name],['[Date] · [Venue, city]',e.date+' · '+e.venue],['Division: [Category / level]','Division: '+e.division],['Partner: [Partner name]',e.partner],['Entry status: [To be confirmed]',e.status],['[Event / entry link] ↗',e.link]].forEach(([a,b])=>replaceText(card,a,b));
  });
  tournaments.querySelectorAll('.past-tournament-card [data-name="Paragraph"] p').forEach(p=>{if(!p.textContent.trim())p.remove();});
@@ -38,7 +38,7 @@ document.querySelectorAll('main').forEach(view=>{
  replaceText(archive,'NO RESULTS ADDED YET','PAST TOURNAMENT');
  const rows=archive.querySelectorAll('[data-name="Past tournament entry"]');
  if(rows[0]){[['[Past tournament]','Silver Wilson Master final'],['[Date] · [Venue] · [Division]','3 Oct 2026 · Earls Court · Level 2–3'],['Partner: [Name] · Result: [Result]','Partner: Anika V.'],['COMPLETED SLOT / UNFILLED','PAST TOURNAMENT'],['[Recap] ↗','Recap to add']].forEach(([a,b])=>replaceText(rows[0],a,b));}
- if(rows[1])rows[1].hidden=true;
+ if(rows[1]){[['[Past tournament]','North West London’s 1st Women’s Padel Tournament'],['[Date] · [Venue] · [Division]','31 Oct 2026 · Padel and Coffee · Level 0–5'],['Partner: [Name] · Result: [Result]','Partner: Anika V. · Result: Won'],['COMPLETED SLOT / UNFILLED','TOURNAMENT WINNERS'],['[Recap] ↗','Won · Carol + Ani']].forEach(([a,b])=>replaceText(rows[1],a,b));rows[1].parentElement.prepend(rows[1]);}
  const profile=view.querySelector('[data-name="Player profile"]');replaceText(profile,'[High-Intermediate]','High-Intermediate');
  const walker=document.createTreeWalker(profile,NodeFilter.SHOW_TEXT);while(walker.nextNode())walker.currentNode.textContent=walker.currentNode.textContent.replace(/[\[\]]/g,'');
  // Fill confirmed club visit dates without inventing personal notes.

@@ -15,6 +15,6 @@ document.querySelectorAll('[data-name="Connect and play"]').forEach(section=>{
  const copy=[...section.querySelectorAll('p')].find(p=>p.textContent.includes('Always up for a good rally.'));
  if(copy){const text=copy.textContent.trim(),ending='Let’s get a game in.';if(text.includes(ending)){copy.textContent=text.replace(ending,'').trim();copy.append(document.createElement('br'),document.createTextNode(ending));}}
  const title=section.querySelector('[data-name="Display title"]');
- const line=title&&[...title.querySelectorAll('p')].find(p=>p.textContent.includes('More padel.*'));
- if(line){line.textContent='More padel.';const star=document.createElement('span');star.className='connect-title-star';star.textContent='*';line.append(star);title.classList.add('connect-title-motion');}
+ const line=title&&[...title.querySelectorAll('p')].find(p=>p.textContent.includes('More padel*'));
+ if(line){line.textContent='More padel';const star=document.createElement('span');star.className='connect-title-star';star.textContent='*';line.append(star);title.classList.add('connect-title-motion');}
 });

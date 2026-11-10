@@ -133,7 +133,7 @@ export default function PersonalPadelMobile() {
             <div className="content-stretch flex items-start pb-[var(--space\/space-0,0px)] relative shrink-0 w-full" data-node-id="0:4565" data-name="Display title">
               <div className="[word-break:break-word] flex-[1_0_0] font-['Michroma:Regular'] leading-[0] min-w-px not-italic relative text-[#080908] text-[36px] tracking-[-1.8px]" data-node-id="I0:4565;5:11269" style={{ fontFeatureSettings: '"lnum" 1, "tnum" 1' }}>
                 <p className="leading-[1.15] mb-0">A little about</p>
-                <p className="leading-[1.15]">my game.</p>
+                <p className="leading-[1.15]">my game</p>
               </div>
             </div>
             <p className="[word-break:break-word] font-['Space_Grotesk:Regular'] font-normal leading-[1.5] min-w-full relative shrink-0 text-[#080908] text-[14px] w-[min-content]" data-node-id="0:4566">
@@ -184,7 +184,7 @@ export default function PersonalPadelMobile() {
             </p>
             <div className="content-stretch flex items-start pb-[var(--space\/space-0,0px)] relative shrink-0 w-full" data-node-id="0:4584" data-name="Display title">
               <p className="[word-break:break-word] flex-[1_0_0] font-['Michroma:Regular'] leading-[1.15] min-w-px not-italic relative text-[#dadada] text-[33px] tracking-[-1.65px]" data-node-id="I0:4584;5:11269" style={{ fontFeatureSettings: '"lnum" 1, "tnum" 1' }}>
-                See you on court.
+                See you on court
               </p>
             </div>
           </div>
@@ -404,7 +404,7 @@ export default function PersonalPadelMobile() {
         <div className="content-stretch flex flex-col gap-[14px] items-start overflow-clip relative shrink-0 w-full" data-node-id="0:4646" data-name="Archive heading">
           <div className="content-stretch flex items-start pb-[var(--space\/space-0,0px)] relative shrink-0 w-full" data-node-id="0:4647" data-name="Display title">
             <p className="[word-break:break-word] flex-[1_0_0] font-['Michroma:Regular'] leading-[1.15] min-w-px not-italic relative text-[#080908] text-[28.5px] tracking-[-1.425px]" data-node-id="I0:4647;5:11269" style={{ fontFeatureSettings: '"lnum" 1, "tnum" 1' }}>
-              The match archive.
+              The match archive
             </p>
           </div>
           <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[1.5] not-italic relative shrink-0 text-[#080908] text-[11px] whitespace-nowrap" data-node-id="0:4648">
@@ -782,7 +782,7 @@ export default function PersonalPadelMobile() {
             </p>
             <div className="content-stretch flex items-start pb-[var(--space\/space-0,0px)] relative shrink-0 w-full" data-node-id="0:4746" data-name="Display title">
               <p className="[word-break:break-word] flex-[1_0_0] font-['Michroma:Regular'] leading-[1.15] min-w-px not-italic relative text-[#dadada] text-[33px] tracking-[-1.65px]" data-node-id="I0:4746;5:11269" style={{ fontFeatureSettings: '"lnum" 1, "tnum" 1' }}>
-                Places to play.
+                Places to play
               </p>
             </div>
           </div>
@@ -927,7 +927,7 @@ export default function PersonalPadelMobile() {
         <div className="content-stretch flex flex-col gap-[16px] items-start overflow-clip relative shrink-0 w-full" data-node-id="0:4779" data-name="Directory heading">
           <div className="content-stretch flex items-start pb-[var(--space\/space-0,0px)] relative shrink-0 w-full" data-node-id="0:4780" data-name="Display title">
             <p className="[word-break:break-word] flex-[1_0_0] font-['Michroma:Regular'] leading-[1.15] min-w-px not-italic relative text-[#dadada] text-[28.5px] tracking-[-1.425px]" data-node-id="I0:4780;5:11269" style={{ fontFeatureSettings: '"lnum" 1, "tnum" 1' }}>
-              The club notebook.
+              The club notebook
             </p>
           </div>
           <p className="[word-break:break-word] font-['IBM_Plex_Mono:Regular'] leading-[1.5] not-italic relative shrink-0 text-[#969c93] text-[11px] w-full" data-node-id="0:4781">
@@ -1470,8 +1470,8 @@ export default function PersonalPadelMobile() {
             </p>
             <div className="content-stretch flex items-start pb-[var(--space\/space-0,0px)] relative shrink-0 w-full" data-node-id="0:4807" data-name="Display title">
               <div className="[word-break:break-word] flex-[1_0_0] font-['Michroma:Regular'] leading-[0] min-w-px not-italic relative text-[#080908] text-[34.5px] tracking-[-1.725px]" data-node-id="I0:4807;5:11269" style={{ fontFeatureSettings: '"lnum" 1, "tnum" 1' }}>
-                <p className="leading-[1.15] mb-0">Less scrolling.</p>
-                <p className="leading-[1.15]">More padel.*</p>
+                <p className="leading-[1.15] mb-0">Less scrolling</p>
+                <p className="leading-[1.15]">More padel*</p>
               </div>
             </div>
             <p className="[word-break:break-word] font-['Space_Grotesk:Regular'] font-normal leading-[1.5] min-w-full relative shrink-0 text-[#080908] text-[14px] w-[min-content]" data-node-id="0:4808">
