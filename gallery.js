@@ -12,7 +12,7 @@ photos.forEach(photo=>{
  button.addEventListener('click',()=>{const full=document.querySelector('#viewer-image');full.src=photo.src;full.alt=photo.alt||'';document.querySelector('#viewer-caption').textContent=[photo.caption,photo.photographer?'Photo by '+photo.photographer:''].filter(Boolean).join(' · ');viewer.showModal();});
 });
 document.querySelector('#gallery-empty').hidden=photos.length>0;
-document.querySelector('#gallery-count').textContent=photos.length?`${photos.length} ${photos.length===1?'MOMENT':'MOMENTS'} / ON & OFF COURT`:'MORE MOMENTS TO COME';
+document.querySelector('#gallery-count').textContent=photos.length?`${photos.length} ${photos.length===1?'MOMENT':'MOMENTS'}`:'MORE MOMENTS TO COME';
 document.querySelector('#close-photo').addEventListener('click',()=>viewer.close());
 if(matchMedia('(max-width:767px)').matches)document.querySelectorAll('a[href*="#desktop-"]').forEach(a=>a.href=a.getAttribute('href').replace('#desktop-','#mobile-'));
 
